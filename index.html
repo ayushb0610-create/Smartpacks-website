@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartPack — packaging recommender · Team HexaCore</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,3 93,26 93,74 50,97 7,74 7,26' fill='%23087f68'/%3E%3Cpolygon points='50,18 80,34 80,66 50,82 20,66 20,34' fill='%23c8ed74'/%3E%3C/svg%3E">
+
+
+
+
+<meta name="theme-color" content="#f4f0e7">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand"><span class="brandMark"><svg viewBox="0 0 100 100" width="20" height="20"><path d="M30 36 L50 25 L70 36 L70 64 L50 75 L30 64 Z" fill="none" stroke="#08251e" stroke-width="7" stroke-linejoin="round"/><path d="M30 36 L50 47 L70 36 M50 47 L50 75" fill="none" stroke="#08251e" stroke-width="7" stroke-linejoin="round"/></svg></span><span class="brandWrap">SmartPack<small>by Team HexaCore</small></span></div>
+    <div class="topbarRight">
+      <div class="teamPill"><span class="hexIcon"><svg viewBox="0 0 100 100" width="12" height="12"><path d="M30 36 L50 25 L70 36 L70 64 L50 75 L30 64 Z" fill="none" stroke="#08251e" stroke-width="8" stroke-linejoin="round"/><path d="M30 36 L50 47 L70 36 M50 47 L50 75" fill="none" stroke="#08251e" stroke-width="8" stroke-linejoin="round"/></svg></span> HexaCore · SIH26236</div>
+      <button class="themeBtn" id="themeToggle" type="button">◐ Appearance</button>
+    </div>
+  </div>
+
+  <div class="hero">
+<div style="grid-column:1/-1;display:inline-flex;align-items:center;gap:7px;margin-bottom:6px;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.68);border:1px solid rgba(20,70,40,.12);font-size:.76rem;font-weight:700;letter-spacing:.02em;"><span style="width:7px;height:7px;border-radius:50%;background:#2f8f5b;box-shadow:0 0 0 4px rgba(47,143,91,.12);"></span>Responsive across phones, tablets & laptops</div>
+    <div>
+      <div class="kicker">Packaging intelligence</div>
+      <h1>Design the right pack, <em>before</em> you make it.</h1>
+      <p>Match a commodity to a packaging film using respiration, moisture, barrier, transport and sustainability needs — then explore the reasoning behind each recommendation.</p>
+    </div>
+    <div class="heroVisual" aria-hidden="true">
+      <div class="orbit a"></div><div class="orbit b"></div>
+      <div class="packageLeaf">🌿</div>
+      <div class="quote"><b>Good packaging is a quiet problem-solver.</b> Protect the product. Reduce waste. Make the choice visible.</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <nav class="tabs" id="tabnav" aria-label="SmartPack sections">
+    <button class="tab on" data-tab="rec">⬡ Recommend</button>
+    <button class="tab" data-tab="mat">📦 Materials</button>
+    <button class="tab" data-tab="com">🥕 Commodities</button>
+    <button class="tab" data-tab="ref">📚 Reference</button>
+    <button class="tab" data-tab="his">🕘 History</button>
+    <span class="tabIndicator" id="tabInd"></span>
+  </nav>
+
+  <section id="rec" class="pane on">
+    <div class="workflow">
+      <div class="workflowHead">
+        <div>
+          <h2>Tell us about the product</h2>
+          <p>Start with the product and let SmartPack calculate the packaging requirements.</p>
+        </div>
+        <div class="stepDots" aria-hidden="true"><i class="active"></i><i class="active"></i><i></i></div>
+      </div>
+
+      <form id="form">
+        <div class="grid">
+          <div class="field"><label for="commodity">Commodity</label><select id="commodity"></select></div>
+          <div class="field"><label for="storage">Storage type</label>
+            <select id="storage"><option value="ambient">Ambient</option><option value="chilled">Chilled</option><option value="frozen">Frozen</option></select>
+          </div>
+          <div class="field"><label for="weight">Pack weight <span>g</span></label><input id="weight" type="number" value="500" min="10"></div>
+          <div class="field"><label for="transport">Transport</label>
+            <select id="transport"><option value="local">Local / short haul</option><option value="regional">Regional truck</option><option value="export">Export (sea/air)</option></select>
+          </div>
+          <div class="field"><label for="priority">Priority</label>
+            <select id="priority"><option value="balanced">Balanced</option><option value="cost">Lowest cost</option><option value="sustain">Most sustainable</option><option value="strength">Toughest</option></select>
+          </div>
+        </div>
+
+        <div class="rangeGrid">
+          <div class="field"><label for="temp">Storage temperature <span id="tempOut" class="rangeOut"></span></label><input id="temp" type="range" min="-20" max="35" value="25"><div class="rangeHint"><span>−20°C</span><span>35°C</span></div></div>
+          <div class="field"><label for="rh">Storage RH <span id="rhOut" class="rangeOut"></span></label><input id="rh" type="range" min="30" max="100" value="90"><div class="rangeHint"><span>30%</span><span>100%</span></div></div>
+          <div class="field"><label for="life">Target shelf life <span id="lifeOut" class="rangeOut"></span></label><input id="life" type="range" min="1" max="365" value="10"><div class="rangeHint"><span>1 day</span><span>365 days</span></div></div>
+        </div>
+
+        <label class="routeCheck"><input type="checkbox" id="routeToggle"> 🗺️ Add a transport route (optional) — factor in distance & destination climate</label>
+        <div class="routePanel" id="routePanel">
+          <div class="routeCol">
+            <span class="routeLabel">From</span>
+            <div class="routeRow">
+              <div class="field"><label for="fromState">State</label><select id="fromState"></select></div>
+              <div class="field"><label for="fromCity">City</label><select id="fromCity"></select></div>
+            </div>
+          </div>
+          <div class="routeArrow">→</div>
+          <div class="routeCol">
+            <span class="routeLabel">To</span>
+            <div class="routeRow">
+              <div class="field"><label for="toState">State</label><select id="toState"></select></div>
+              <div class="field"><label for="toCity">City</label><select id="toCity"></select></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rangeGrid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="field"><label for="aw">Water activity <span id="awOut" class="rangeOut"></span></label><input id="aw" type="range" min="0" max="1" step="0.01" value="0.95"><div class="rangeHint"><span>0 aw</span><span>1 aw</span></div></div>
+          <div class="field"><label for="oxSens">Oxidation sensitivity <span id="oxSensOut" class="rangeOut"></span></label><input id="oxSens" type="range" min="1" max="5" step="1" value="3"><div class="rangeHint"><span>1 low</span><span>5 high</span></div></div>
+          <div class="field"><label for="lightSens">Light sensitivity <span id="lightSensOut" class="rangeOut"></span></label><input id="lightSens" type="range" min="0" max="5" step="1" value="0"><div class="rangeHint"><span>0 none</span><span>5 high</span></div></div>
+        </div>
+        <div style="display:none">
+          <input id="moisture"><input id="fat"><input id="ph"><input id="resp">
+        </div>
+        <button class="go" type="submit">Find my packaging →</button>
+      </form>
+    </div>
+
+    <div id="out"></div>
+
+    <div class="footerQuote">
+      <blockquote>“Packaging should preserve the product's story — not become the story.”<br><cite>SmartPack · built by Team HexaCore for Smart India Hackathon (PS SIH26236)</cite></blockquote>
+      <div class="leafBubble"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M30 36 L50 25 L70 36 L70 64 L50 75 L30 64 Z" fill="none" stroke="#08251e" stroke-width="6" stroke-linejoin="round"/><path d="M30 36 L50 47 L70 36 M50 47 L50 75" fill="none" stroke="#08251e" stroke-width="6" stroke-linejoin="round"/></svg></div>
+    </div>
+  </section>
+
+  <section id="mat" class="pane">
+    <div class="resultsHeader"><div><h2>Material library</h2><p>Compare barrier, cost, strength, sealability and end-of-life characteristics.</p></div></div>
+    <div class="tablewrap"><table id="matTable"></table></div>
+  </section>
+
+  <section id="com" class="pane">
+    <div class="resultsHeader"><div><h2>Commodity library</h2><p>Inputs used by the recommendation engine and their source notes.</p></div></div>
+    <div class="tablewrap"><table id="comTable"></table></div>
+    <p class="note">"USDA AH-66" rows list the source handbook's recommended holding temperature, RH and storage life, plus measured respiration rates. Other database entries are estimates pending supplier or lab data.</p>
+  </section>
+
+  <section id="his" class="pane">
+    <div class="resultsHeader"><div><h2>Your design trail</h2><p>Previous recommendation runs are stored locally in your browser.</p></div></div>
+    <button class="clearbtn" id="clear">Clear history</button>
+    <div class="tablewrap"><table id="hisTable"></table></div>
+  </section>
+
+  <section id="ref" class="pane">
+    <div class="resultsHeader"><div><h2>Packaging reference</h2><p>Structures, metallization data and BIS-aligned packaging references.</p></div></div>
+    <div class="refGrid">
+      <div class="sectionCard"><h3>Multilayer structures</h3><p class="note">Standard coextruded and laminated film structures and where each is typically used.</p><div class="tablewrap"><table id="mlTable"></table></div></div>
+      <div class="sectionCard"><h3>Metallization</h3><p class="note">Oxygen permeability of 25 µm PET as the aluminium layer gets thicker.</p><div class="tablewrap"><table id="metTable"></table></div></div>
+    </div>
+    <div class="sectionCard"><h3>BIS-recommended packaging</h3><p class="note">Materials matched to SmartPack's commodity list from the cited BIS packaging standards.</p><div class="tablewrap"><table id="bisTable"></table></div></div>
+    <p class="note"><span class="src">Sources:</span> L. Piergiovanni &amp; S. Limbo, <em>Food Packaging Materials</em>, Springer, 2016; BIS IS 10106 (Part 1/Sec 1):1990 and IS 10171-1982.</p>
+  </section>
+</main>
+
+  <script src="app.js"></script>
+</body>
+</html>
